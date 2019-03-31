@@ -4,14 +4,12 @@ header{
     width: 100%;
     text-align:center;
 }
-
 header h1{
     margin-top: 10px;
     font-family: Arial;
     font-size: 60px;
     font-weight: bold;
 }
-
  #newgamebutton{
     display:block;
     margin: 20px auto;
@@ -27,6 +25,9 @@ header h1{
     border-radius:10px;
 }
 
+/* header #newgamebutton:hover{
+    color: black;
+} */
 header p{
     font-size: 25px;
     margin:20px auto;
@@ -52,11 +53,12 @@ header p{
         position: absolute;
 
 }
-
 .number-cell{
     font-family:Arial;
     font-weight:bold;
-    
+    font-size:50px;
+    /* 将行高设置成和方块一样高，便于居中； */
+    line-height:100px;
     text-align:center;
     border-radius: 6px;
 

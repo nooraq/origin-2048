@@ -1,9 +1,6 @@
 //游戏分数
 let score=0;
-let board = [[0,0,0,0],
-            [0,0,0,0],
-            [0,0,0,0],
-            [0,0,0,0],];
+let board = [];
 let hasConflicted = [];
 let times = 0;
 let startx = 0;
@@ -19,7 +16,6 @@ const newgame = () =>{
     init();
     generateOneNumber();
     generateOneNumber();
-    updateBoardView();
 }
 const init = () => {
     for (let i=0;i<4;i++){
@@ -43,6 +39,7 @@ const init = () => {
             // console.log(board[i][j]);
         }
     }
+    updateBoardView();
     score = 0;
 }
 
@@ -71,15 +68,14 @@ const updateBoardView = () =>{
                 theNumberCell.css("background-color",getNumberBackgroundColor(board[i][j]));
                 theNumberCell.css("color",getNumberColor(board[i][j]));
                 theNumberCell.text(board[i][j]);
-                if(board[i][j] > 1000) {
-                    theNumberCell.css('font-size',cellSideLength * 0.5 + 'px');
-                }else{
-                    theNumberCell.css('font-size',cellSideLength * 0.6 + 'px');
-                }
+
             }
-            theNumberCell.css('line-height',cellSideLength + 'px');
             hasConflicted[i][j] = false;
         }
+        // console.log(document.getElementsByClassName('number-cell'));
+        
+    $('.number-cell').css('line-height',cellSideLength+'px');
+    $('.number-cell').css('font-size',cellSideLength * 0.6+'px');
 }
     
     const generateOneNumber = () =>{
@@ -113,13 +109,7 @@ const updateBoardView = () =>{
     //随机一个数字
         let randNumber=Math.random()<0.5?2 : 4;
     //在随机位置显示随机数字
-        board[randx][randy] = randNumber;
-        const theNumberCell = $('#number-cell-' + randx + '-' + randy);
-        if(board[randx][randy] > 1000) {
-            theNumberCell.css('font-size',cellSideLength * 0.5 + 'px');
-        }else{
-            theNumberCell.css('font-size',cellSideLength * 0.6 + 'px');
-        }
+        board[randx][randy]=randNumber;
         showNumberWithAnimation(randx,randy,randNumber);
         return true;
     }
@@ -131,9 +121,8 @@ document.addEventListener('touchstart',(event) => {
 
 document.addEventListener('touchmove', (event) => {
     event.preventDefault();
-    event.stopPropagation();
-}, {passive : false});
-
+    event.stopPropagetion();
+})
 document.addEventListener('touchend',(event) => {
     endx = event.changedTouches[0].pageX;
     endy = event.changedTouches[0].pageY;
@@ -146,12 +135,12 @@ document.addEventListener('touchend',(event) => {
         if(deltax > 0){
             //move right
             if(moveRight()){
-                setTimeout("generateOneNumber()",200);
+                generateOneNumber();
                 isGameOver();
             }
         }else{
             if(moveLeft()){
-                setTimeout("generateOneNumber()",200);
+                generateOneNumber();
                 isGameOver();
             }
         }
@@ -159,12 +148,12 @@ document.addEventListener('touchend',(event) => {
         if(deltay > 0){
             //move up
             if(moveDown()){
-                setTimeout("generateOneNumber()",200);
+                generateOneNumber();
                 isGameOver();
             }
         }else{
             if(moveUp()){
-                setTimeout("generateOneNumber()",200);
+                generateOneNumber();
                 isGameOver();
             }
         }
@@ -177,25 +166,25 @@ $(document).keydown( (event) => {
         //left
         case 37 :     event.preventDefault();
         if(moveLeft()){
-            setTimeout("generateOneNumber()",200);
+            generateOneNumber();
             isGameOver();
         } break;
         //up
         case 38 :     event.preventDefault();  
         if(moveUp()){
-            setTimeout("generateOneNumber()",200);
+            generateOneNumber();
             isGameOver();
         } break;
         //right
         case 39 :      event.preventDefault(); 
         if(moveRight()){
-            setTimeout("generateOneNumber()", 200 );
+            generateOneNumber();
             isGameOver();
         } break;
         // down
         case 40 :     event.preventDefault(); 
         if(moveDown()){
-            setTimeout("generateOneNumber()",200);
+            generateOneNumber();
             isGameOver();
         } break;
         default : break;

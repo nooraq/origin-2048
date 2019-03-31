@@ -315,10 +315,6 @@ const noBlockHorizontalCol = (col,row1,row2,board) => {
         $('#newgamebutton').mouseout(function (){
             $(this).css('color','white');
         });
-    }else{
-        // 对移动端做固定布局防止preventDefault()在某些移动端失效。
-        $('html').css('overflow','hidden');
-        $('html').css('height','100%');  
     }
     $('#grid-container').css('width',gridContainerWidth-2*cellSpace);
     $('#grid-container').css('height',gridContainerWidth-2*cellSpace);
