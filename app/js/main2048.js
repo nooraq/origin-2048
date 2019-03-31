@@ -71,8 +71,8 @@ const updateBoardView = () =>{
                 theNumberCell.css("background-color",getNumberBackgroundColor(board[i][j]));
                 theNumberCell.css("color",getNumberColor(board[i][j]));
                 theNumberCell.text(board[i][j]);
-                if(board[i][j] > 1000) {
-                    theNumberCell.css('font-size',cellSideLength * 0.5 + 'px');
+                if(board[i][j] > 100) {
+                    theNumberCell.css('font-size',cellSideLength * 0.4 + 'px');
                 }else{
                     theNumberCell.css('font-size',cellSideLength * 0.6 + 'px');
                 }
